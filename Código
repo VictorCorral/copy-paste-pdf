@@ -3,7 +3,7 @@
 
 import pyperclip, re
 
-# Creamos una expresión regular que identifiques los importes
+# Creamos una expresión regular que identifique los importes
 eurosRegex = re.compile(r'''(
     (\d{0,3})?     # puede que haya entre 0 y 3 números
     (\.)?          # puede que haya un punto
