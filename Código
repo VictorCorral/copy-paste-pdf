@@ -1,0 +1,30 @@
+#! python3
+# Creamos un script para extraer los importes en € de un pdf
+
+import pyperclip, re
+
+# Creamos una expresión regular que identifiques los importes
+eurosRegex = re.compile(r'''(
+    (\d{0,3})?     # puede que haya entre 0 y 3 números
+    (\.)?          # puede que haya un punto
+    (\d{0,3})?     # puede que haya entre 0 y 3 números
+    (\.)?          # puede que haya un punto
+    (\d{3}|\d{2})  # dos o tres digitos
+    )''', re.VERBOSE)
+
+
+# Guardamos lo copiado del pdf en la variable "text"
+text = str(pyperclip.paste())
+
+# Extraemos los importes en euros del texto
+extractedEuros = eurosRegex.findall(text)
+
+allEuros = []
+for importeEuros in extractedEuros:
+    allEuros.append(importeEuros[0])
+
+# Copiamos los resultados a clipboard.
+results = '\n'.join(allEuros)
+pyperclip.copy(results)
+
+# Sólo tendríamos que pegar los resultado donde quisiésemos
